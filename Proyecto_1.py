@@ -16,16 +16,15 @@ def min_movimientos(torres):
         if (pos, prev_height) in memo:
             return memo[(pos, prev_height)]
 
-        min_moves = float('inf')
-        for i in range(prev_height, torres[pos] + 1):
+        min_moves = 100000
+        for i in range(int(prev_height), torres[pos] + 1):
             moves = i - torres[pos] + dp(pos + 1, i)
             min_moves = min(min_moves, moves)
 
         memo[(pos, prev_height)] = min_moves
         return min_moves
 
-    return dp(0, float('inf'))
-
+    return dp(0, 100000)
 # Ejemplo de uso:
 #torres = [5, 3, 7, 2, 8]
 #print("Mínimo número de movimientos requeridos:", min_movimientos(torres))
