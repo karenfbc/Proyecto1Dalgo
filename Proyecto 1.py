@@ -1,3 +1,5 @@
+import sys 
+
 # Karen Fuentes
 # Alison Aristizabal
 
@@ -25,10 +27,10 @@ def min_movimientos(torres):
     return dp(0, float('inf'))
 
 # Ejemplo de uso:
-torres = [5, 3, 7, 2, 8]
-print("Mínimo número de movimientos requeridos:", min_movimientos(torres))
+#torres = [5, 3, 7, 2, 8]
+#print("Mínimo número de movimientos requeridos:", min_movimientos(torres))
 
-def minMovimientos(fichas):
+"""def minMovimientos(fichas):
     n = len(fichas)
     # Calcula la altura total de las torres para encontrar la altura objetivo
     total_fichas = sum(fichas)
@@ -51,8 +53,15 @@ def minMovimientos(fichas):
     for j in range(total_fichas + 1):
         min_mov = min(min_mov, dp[n][j])
         
-    return min_mov
+    return min_mov"""
 
 # Ejemplo de uso
-fichas = [4, 3, 2, 1]
-print(minMovimientos(fichas))
+#fichas = [4, 3, 2, 1]
+#print(minMovimientos(fichas))
+
+if __name__ == "__main__":
+    number_of_cases = int(sys.stdin.readline().strip())
+    for _ in range(number_of_cases):
+        arreglo = list(map(int, sys.stdin.readline().split()))
+        result = min_movimientos(arreglo)
+        print(result)
