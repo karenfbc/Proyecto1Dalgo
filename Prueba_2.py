@@ -19,7 +19,7 @@ def min_movimientos(torres):
         if index == len(torres) - 1:
             return 0
         
-        min_movs = 10000000000000000
+        min_movs = float('inf')
         for i in range(max(0, prev_index-1), min(n, prev_index+2)):
             if torres[i] < torres[index]:
                 # Calcular los movimientos restantes recursivamente
@@ -35,13 +35,13 @@ def min_movimientos(torres):
     return helper(torres, 0, 0)
 
 # Ejemplo de uso
-#torres = [3, 2, 1, 4]
-#print(min_movimientos(torres))
+torres = [3, 2, 1, 4]
+print(min_movimientos(torres))
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     number_of_cases = int(sys.stdin.readline().strip())
     for _ in range(number_of_cases):
         arreglo = list(map(int, sys.stdin.readline().split()))
         result = min_movimientos(arreglo)
-        print(result)
+        print(result)"""
