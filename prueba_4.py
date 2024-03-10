@@ -6,7 +6,7 @@ def swap_elements(arr, i, j):
 def minimumSwapsUniversal(arr, start=0):
     if len(arr) <= 1 or start >= len(arr) - 1:
         # Base cases: array is effectively sorted or single element left to consider
-        return 0
+        return 0 
     
     # For arrays of size 2, check if a swap is needed
     if len(arr) - start == 2:
