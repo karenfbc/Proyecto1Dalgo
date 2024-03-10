@@ -5,24 +5,41 @@ def min_movimientos(torres):
     def min_move(torres, pos):
         minMov=10**9
         if pos == 0:
-           return 0
+            return 0
         if pos == n:
             return min_move(torres, n-1)
         else:
-            movimientos_ant = 0
-            if pos > 0 and torres[pos] < torres[pos-1]:
-                movimientos_ant = torres[pos-1] - torres[pos] + min_move(torres[:pos], pos-1)
-        
-        # Mover de la torre siguiente a la torre actual
-            movimientos_sig = 0
-            if pos < n-1 and torres[pos] < torres[pos+1]:
-                movimientos_sig = torres[pos+1] - torres[pos] + min_move(torres[pos+1:], 0)
-        
-        return min(movimientos_ant, movimientos_sig)
+            if torres[pos] < torres[pos+1]:
+                if torres[pos-1]-torres[pos+1]>0:
+                    torres[pos-1] -=1
+                    torres[pos] +=1
+                    minMov=min(minMov,1+min_move(torres,pos))
+                else:
+                    torres[pos+1] -=1
+                    torres[pos] +=1
+                    minMov=min(minMov,1+min_move(torres,pos))
+            else:
+                minMov=min(minMov,min_move(torres,pos-1)) 
+        return minMov
+    if n == 1:
+        return 0
+    elif n == 2:
+        if torres[0]< torres[1]:
+            return (torres[1]-torres[0])//2
+        else:
+            return 0
+    else:
+            return min_move(torres, n)
     
-    return min_move(torres, 0)
 
-
+# Test cases
+print(min_movimientos([0])) # Expected: 0
+print(min_movimientos([1])) # Expected: 0
+print(min_movimientos([1,1])) # Expected: 0
+print(min_movimientos([1,2])) # Expected: 1
+print(min_movimientos([3,2,1,4]))  # Expected: 3
+print(min_movimientos([3,2,2,4]))  # Expected: 2
+print(min_movimientos([7,0,0,0,0,0,0,1]))  # Expected: 6
 
 """if __name__ == "__main__":
     number_of_cases = int(sys.stdin.readline().strip())
