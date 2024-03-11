@@ -1,4 +1,5 @@
 import math
+import sys
 
 def min_movimientos(torres):
     n = len(torres)
@@ -60,3 +61,12 @@ print(min_movimientos([24, 36, 38, 14, 7, 7, 7, 2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0,
 print(min_movimientos([20, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 9, 3, 5, 14, 19, 23, 32])) # Expected: 857 (FALLA)
 print(min_movimientos([4, 3, 2, 2, 4])) # Expected: 3 CHECK 
 print(min_movimientos([4, 3, 0, 1, 1])) # Expected: 2 CHECK
+
+if __name__ == "__main__":
+    number_of_cases = int(sys.stdin.readline().strip())
+    for _ in range(number_of_cases):
+        arreglo = list(map(int, sys.stdin.readline().split()))
+        n = arreglo[0]
+        torres = arreglo[1:]
+        result = min_movimientos(arreglo)
+        print(result)

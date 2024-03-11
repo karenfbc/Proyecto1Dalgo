@@ -62,5 +62,7 @@ if __name__ == "__main__":
     number_of_cases = int(sys.stdin.readline().strip())
     for _ in range(number_of_cases):
         arreglo = list(map(int, sys.stdin.readline().split()))
+        n = arreglo[0]
+        torres = arreglo[1:]
         result = min_movimientos(arreglo)
         print(result)
