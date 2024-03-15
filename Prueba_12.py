@@ -42,7 +42,6 @@ def min_movimientos(torres):
                         minMov = min(minMov, dp(pos - 1, recorrido))
                 resultado = minMov
 
-            # Almacenar el resultado en la tabla de memoización
             memo[pos][recorrido] = resultado
             return resultado
 
