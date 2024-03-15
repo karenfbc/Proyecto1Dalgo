@@ -1,43 +1,14 @@
 import math
 
-import math
 
 def min_movimientos(torres):
     n = len(torres)
-    matriz = [[0 for _ in range(n)] for _ in range(2)]
-    recorrido = 0
-
+    div=n//3
+    izq= torres[:div]
+    medio= torres[div:div+div]
+    der= torres[div+div:0]
     def min_move_0(torres, pos, recorrido):
-        nonlocal n
-        
-        if pos == 0:
-            matriz[recorrido][pos] = 0
-        elif pos == n - 1:
-            matriz[recorrido][pos] = min_move_0(torres, n - 2, recorrido)
-        elif pos == 1:
-            minMov = 10**9
-            if torres[pos - 1] > torres[pos]:
-                torres[pos - 1] -= 1
-                torres[pos] += 1
-                minMov = min(minMov, 1 + min_move_0(torres, pos, recorrido))
-                matriz[recorrido][pos] = minMov
-        else:
-            minMov = 10**9
-            if torres[pos] > torres[pos + 1] or torres[pos - 1] > torres[pos + 1]:
-                if torres[pos - 1] >= torres[pos]:
-                    torres[pos - 1] -= 1
-                    torres[pos + 1] += 1
-                    minMov = min(minMov, 2 + min_move_0(torres, pos, recorrido))
-                else:
-                    torres[pos + 1] += 1
-                    torres[pos] -= 1
-                    minMov = min(minMov, 1 + min_move_0(torres, pos, recorrido))
-            else:
-                minMov = min(minMov, min_move_0(torres, pos - 1, recorrido))
-
-            matriz[recorrido][pos] = minMov
-        return matriz[recorrido][pos]
-
+        pass
     if n <= 1:
         return 0
     elif n == 2:
