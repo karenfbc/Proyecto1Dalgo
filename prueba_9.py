@@ -48,23 +48,18 @@ def min_movimientos(torres):
 
         else:
             minMov = 10**9
-            if torres[pos] > torres[pos + 1]:
-                if torres[pos - 1] - torres[pos + 1] < 0: #
-                    torres[pos - 1] += 1
-                    torres[pos] -= 1
-                    minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
-                else:
-                    torres[pos + 1] += 1
-                    torres[pos] -= 1
+            if torres[pos] < torres[pos -1]:
+                    torres[pos + 1] -= 1
+                    torres[pos] += 1
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
             else:
-                if torres[pos] < torres[pos -1] and torres[pos-1] >= torres[pos + 1]:
-                    torres[pos ] += 1
-                    torres[pos-1] -= 1
+                if torres[pos] > torres[pos -1] and torres[pos-1] <= torres[pos + 1]:
+                    torres[pos ] -= 1
+                    torres[pos-1] += 1
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
-                elif torres[pos] < torres[pos -1]:
-                    torres[pos] += 1
-                    torres[pos-1] -= 1
+                elif torres[pos] > torres[pos -1]:
+                    torres[pos ] -= 1
+                    torres[pos-1] += 1
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos-1, recorrido))
                 else:
                     minMov = min(minMov, min_move_0(list(torres), pos - 1, recorrido))
@@ -83,6 +78,7 @@ def min_movimientos(torres):
     if recorrido == 1:
         min_move_1(torres, n - 1, 1)
         print(matriz[1][n-1])
+        recorrido = 2
 
 
 print(min_movimientos([0]))  # Expected: 0 

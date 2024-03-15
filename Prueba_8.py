@@ -15,8 +15,7 @@ def min_movimientos(torres):
 
         else:
             minMov = 10**9
-            print(str(torres[pos-1]),str(torres[pos]),str(torres[pos+1]))
-            if torres[pos] < torres[pos + 1]:
+            if torres[pos] < torres[pos -1]:
                     torres[pos + 1] -= 1
                     torres[pos] += 1
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
