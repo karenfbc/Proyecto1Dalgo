@@ -20,7 +20,16 @@ def min_movimientos(torres):
                     torres[pos] -= 1
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
             else:
-                minMov=min(minMov,min_move_0(list(torres), pos-1, recorrido))
+                if torres[pos] > torres[pos -1] and torres[pos-1] <= torres[pos + 1]:
+                    torres[pos ] -= 1
+                    torres[pos-1] += 1
+                    minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
+                elif torres[pos] > torres[pos -1]:
+                    torres[pos ] -= 1
+                    torres[pos-1] += 1
+                    minMov = min(minMov, 1 + min_move_0(list(torres), pos-1, recorrido))
+                else:
+                    minMov = min(minMov, min_move_0(list(torres), pos - 1, recorrido))
 
             matriz[recorrido][pos] = minMov
         return matriz[recorrido][pos] 
