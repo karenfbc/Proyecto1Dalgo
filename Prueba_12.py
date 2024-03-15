@@ -7,11 +7,11 @@ def min_movimientos(torres):
 
     def min_move_0(torres, pos, recorrido):
         # Creamos una tabla de memoización para almacenar los resultados calculados previamente
-        memo = [[float('inf')] * n for _ in range(n)]
+        memo = [[10**9] * n for _ in range(n)]
 
         def dp(pos, recorrido):
             # Verificar si el resultado ya está en la tabla de memoización
-            if memo[pos][recorrido] != float('inf'):
+            if memo[pos][recorrido] != 10**9:
                 return memo[pos][recorrido]
 
             if pos == 0:
@@ -19,7 +19,7 @@ def min_movimientos(torres):
             elif pos == n - 1:
                 resultado = dp(n - 2, recorrido)
             else:
-                minMov = float('inf')
+                minMov = 10**9
                 if torres[pos] < torres[pos + 1]:
                     if torres[pos - 1] - torres[pos + 1] > 0: 
                         torres[pos - 1] -= 1
