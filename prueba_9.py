@@ -5,8 +5,16 @@ def min_movimientos(torres):
     n = len(torres)
     matriz = [[0 for _ in range(n)] for _ in range(2)]
     recorrido = 0
+    memo0 = {}
+    memo1 = {}
 
     def min_move_0(torres, pos, recorrido):
+        print(memo0)
+        llave = 0
+        print(llave)
+
+        if pos != 0 and pos != n-1:
+            llave = tuple([torres[pos-1],torres[pos],torres[pos+1]])
 
         if pos == 0:
             matriz[recorrido][pos] = 0
@@ -15,36 +23,53 @@ def min_movimientos(torres):
 
         else:
             minMov = 10**9
-            if torres[pos] < torres[pos + 1]:
+            print("llave dentro del else"+ str(llave))
+
+            if llave in memo0:
+                print("llegue, la llave esta en memo0")
+                print("este es memo0:"+ str(memo0))
+                return memo0[llave]
+            elif torres[pos] < torres[pos + 1]:
                 if torres[pos - 1] - torres[pos + 1] > 0: #
                     torres[pos - 1] -= 1
                     torres[pos] += 1
+                    matriz[recorrido][pos] +=1
+                    memo0[llave] = matriz[recorrido][pos]
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
                 else:
                     torres[pos + 1] -= 1
                     torres[pos] += 1
+                    matriz[recorrido][pos] +=1
+                    memo0[llave] = matriz[recorrido][pos]
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
             else:
                 if torres[pos] > torres[pos -1] and torres[pos-1] <= torres[pos + 1]:
                     torres[pos ] -= 1
                     torres[pos-1] += 1
+                    matriz[recorrido][pos] +=1
+                    memo0[llave] = matriz[recorrido][pos]
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos, recorrido))
                 elif torres[pos] > torres[pos -1]:
                     torres[pos ] -= 1
                     torres[pos-1] += 1
+                    matriz[recorrido][pos] +=1
+                    memo0[llave] = matriz[recorrido][pos]
                     minMov = min(minMov, 1 + min_move_0(list(torres), pos-1, recorrido))
                 else:
                     minMov = min(minMov, min_move_0(list(torres), pos - 1, recorrido))
 
             matriz[recorrido][pos] = minMov
-        return matriz[recorrido][pos] 
+
+            print("este es el memo  del final: " + str(memo0))
+        print("nueva iteración")
+        return matriz[recorrido][pos]
     
     def min_move_1(torres, pos, recorrido):
-
+        """
         if pos == 0:
             matriz[recorrido][pos] = 0
         elif pos == n - 1:
-            matriz[recorrido][pos] = min_move_0(torres, n - 2, recorrido)
+            matriz[recorrido][pos] = min_move_0(torres, n - 2, recorrido,memo0)
 
         else:
             minMov = 10**9
@@ -66,6 +91,8 @@ def min_movimientos(torres):
 
             matriz[recorrido][pos] = minMov
         return matriz[recorrido][pos] 
+        """
+        return None
     
     if n <= 1:
         return 0
@@ -79,8 +106,9 @@ def min_movimientos(torres):
         min_move_1(torres, n - 1, 1)
         print(matriz[1][n-1])
         recorrido = 2
+    
 
-
+"""
 print(min_movimientos([0]))  # Expected: 0 
 print(min_movimientos([1]))  # Expected: 0 
 print(min_movimientos([1, 1]))  # Expected: 0 
@@ -100,3 +128,6 @@ print(min_movimientos([3, 2, 2, 4])) # Expected: 3
 print(min_movimientos([3, 0, 1, 1])) # Expected: 1 (FALLA)
 print(min_movimientos([36, 38, 14, 7, 7, 7, 2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])) # Expected: 2
 print(min_movimientos([3, 0, 1, 1])) # Expected: 1 (FALLA)
+"""
+
+print(min_movimientos([3,1,2,4]))  # Expected: 4 
