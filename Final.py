@@ -134,5 +134,5 @@ if __name__ == "__main__":
         arreglo = list(map(int, sys.stdin.readline().split()))
         n = arreglo[0]
         torres = arreglo[1:]
-        result = min_movimientos(arreglo)
+        result = min_movimientos(torres)
         print(result)
